@@ -28,6 +28,15 @@ seemlessly in a browser or in Node.
 
 It comes free with chai and sinon, which are optional to use.
 
+## Installation
+
+You can clone the repository with your generic clone commands as a standalone repository or
+submodule.
+
+	git clone git://github.com/clubajax/AMDUnit.git
+	
+Then run: `npm install`
+
 ## Usage
 
 ### Suites

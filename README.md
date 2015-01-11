@@ -106,11 +106,11 @@ of the test, and the value being the function to run the test.
 See the `/examples` folder for an example of a config file and how unit tests are to be set up.
 
 The trickiest part of any AMD project is getting the config right so requirejs can find all
-the files. Where ever `/AMD Unit` is placed, it should be within the same root folder (`/src` below).
+the files. Where ever `/AMDUnit` is placed, it should be within the same root folder (`/src` below).
 as the project to be tested. Assuming the ideal situation of a folder structure such as:
 
 	/src
-	  /AMD Unit
+	  /AMDUnit
 	  /project
 	    /tests
 	      /foo
@@ -118,9 +118,9 @@ as the project to be tested. Assuming the ideal situation of a folder structure 
 	      /bar
 	        bar.test.js
 
-Since the starting point is the `/AMD Unit/runner.html` or `/AMD Unit/main.js` (for Node.js) the
-paths should be relative to the `/AMD Unit` folder. The config file would need to set the baseUrl
-to point to `/src`, and then there should be a `paths` setting for the `AMD Unit` folder, set to
+Since the starting point is the `/AMDUnit/runner.html` or `/AMDUnit/main.js` (for Node.js) the
+paths should be relative to the `/AMDUnit` folder. The config file would need to set the baseUrl
+to point to `/src`, and then there should be a `paths` setting for the `AMDUnit` folder, set to
 `amd-unit` (needed internaly). It is optional to set additonal paths for test files. `suites` is
 an array of paths pointing to test files.
 	
@@ -144,7 +144,7 @@ an array of paths pointing to test files.
 `runner.html` needs to be run from a local server. Due to the XHR calls, it will not run from a file
 path unless you change the security settings in your browser.
 
-To run in the browser, load up `AMDUnit/runner.html` passing the path to your config file as a query
+To run in the browser, load `AMDUnit/runner.html`, passing the path to your config file as a query
 parameter, such as:
 
 	http://localhost/AMDUnit/runner.html?config=./examples/config

@@ -40,15 +40,17 @@ which is a hash map of unit tests.
 Your suite can contain any or all of the following built-in methods:
 
 	before(load)
-		// Called before the tests are run. Passes an function that can optionally be used,
-		//`load()` that asyncronously loads your files (see below)
+		// Called before the tests are run. Passes an function that can optionally be
+		// used, `load()` that asyncronously loads your files (see below)
 	beforeEach(load)
-		// Like `before()` but runs before each test. Also has the `load()` function available.
+		// Like `before()` but runs before each test. Also has the `load()` function
+		// available.
 	after(unload)
 		// Runs after all tests have run. Passes an function that can optionally be used,
 		//`unload()` which unregisters the test file and any mocks from requirejs.
 	afterEach(unload)
-		// Like `after()` but runs after each test. Also has an `unload()` function available.
+		// Like `after()` but runs after each test. Also has an `unload()` function
+		// available.
 
 `load` accepts two or three parameters. If two, the first should be a path to the test file, and the
 second is the callback. 

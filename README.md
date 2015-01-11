@@ -141,12 +141,15 @@ an array of paths pointing to test files.
 				'foo': './project/tests/foo'
 			}
 		},
+		haltOnErrors: true,
 		suites: [
 			'foo/foo.test.js'
 			'./project/tests/bar/bar.test.js'
 		]
 	};
 	
+By default, `haltOnErrors` is false, and tests are wrapped in a try-catch so the entire suite will
+run. To get error handling while debugging, it can be helpful to set this to true.
 	
 ## Running the Tests
 

@@ -1,0 +1,18 @@
+{
+	"author": "Mike Wilcox @clubajax",
+	"name": "amd-unit",
+	"description": "Test runner designed to work require.js.",
+	"version": "0.0.1",
+	"license": "Unlicense",
+    "readmeFilename": "README.md",
+	"repository": {
+        "type": "git",
+        "url": "git://github.com/clubajax/amd-unit.git"
+    },
+	"dependencies": {
+		"chai": "latest",
+		"sinon": "latest",
+		"chalk": "^0.5.1",
+		"requirejs": "latest"
+	}
+}

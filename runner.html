@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Runner</title>
+	<script src='node_modules/chai/chai.js'></script>
+	<script src='node_modules/sinon/pkg/sinon-1.9.0.js'></script>
+	<script src='node_modules/requirejs/require.js'></script>
+</head>
+<body>
+    <h1>Runner</h1>
+	
+	<p id='has-config'>Test results are shown in the console.</p>
+	
+	<div id='no-config'>
+		<div>A config file is required on the URL, such as:</div>
+		<div><i>runner.html?config=./examples/config</i></div>
+		<div>See the examples/config or the README for how to create your own config file.</div>
+	</div>
+	
+	<script>
+		
+		window.expect = window.chai.expect;
+		window.assert = window.chai.assert;
+		// to show its existence:
+		window.sinon = window.sinon;
+		
+		function urlParams(){
+			var
+				params = {},
+				pageName = 'runner.html',
+				search = (document.location.search || '').replace('?',''),
+				hash = (document.location.hash || '').replace('#',''),
+				path = document.location.pathname;
+			
+			search.split('&').forEach(function(keyValues){
+				params[keyValues.split('=')[0]] = keyValues.split('=')[1];
+			});
+			hash.split('&').forEach(function(keyValues){
+				params[keyValues.split('=')[0]] = keyValues.split('=')[1];
+			});
+			path.split('/').forEach(function(path, i, paths){
+				if(pageName === path){
+					params.amdPath = paths[i - 1];
+				}
+			});
+			return params;
+		}
+		
+		var params = urlParams();
+		
+		if(params.config){
+			document.getElementById('no-config').style.display = 'none';
+			require([params.config], function(config){
+				console.log('config', config);
+				var loader = config.loader || {};
+				loader.paths = loader.paths || {};
+				loader.waitSeconds = loader.waitSeconds || 3;
+	
+				//if(!loader.paths['amd-unit']){
+				//	console.log('params.amdPath', params.amdPath);
+				//	loader.paths['amd-unit'] = '' + params.amdPath;
+				//}
+				requirejs.config(loader);
+				
+				if(params.tests || params.suites || config.suites || config.tests){
+					require([
+						'require',
+						'amd-unit/lib/runner'
+					], function(req, runner){
+						runner(req, config, params.tests || params.suites || config.suites || config.tests);
+					});
+				}
+			});
+		}else{
+			document.getElementById('has-config').style.display = 'none';
+		}
+		
+	</script>
+</body>
+</html>
